@@ -14,16 +14,24 @@ html {
 body {
     width: 100%;
     height: 100%;
-    color: #505050;
     font-family: 'Pretendard-Regular';
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'aside main'
+        'footer main';
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 9vh 1fr 7vh;
     background-image: url('/static/images/bg.png');
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
+/* header */
 .header {
-    height: 90px;
+    grid-area: header;
     background-color: #505050;
     display: flex;
     justify-content: space-between;
@@ -33,6 +41,10 @@ body {
 
 .header .logo {
     cursor: pointer;
+}
+
+.header img {
+    width: 80%;
 }
 
 .header-btn {
@@ -53,4 +65,39 @@ body {
 .header-btn .signin:hover,
 .header-btn .lang:hover {
     color: #f8b528;
+}
+
+/* aside */
+.aside {
+    grid-area: aside;
+    padding: 3vw;
+    border: 1px solid #ff0000;
+}
+
+.search-form {
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.search-form .search {
+    width: 80%;
+    height: 90%;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.search-form .search:focus {
+    outline: none;
+}
+
+/* footer */
+.footer {
+    grid-area: footer;
+    border: 1px solid #00ff37;
 }

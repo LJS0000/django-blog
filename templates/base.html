@@ -24,7 +24,16 @@
     </header>
 
     {# aside #}
-    <aside class='aside'></aside>
+    <aside class='aside'>
+      <form class='search-form'>
+        {% csrf_token %}
+        <label for='aside-submit'>
+          <img src='{% static "images/icon-search.png" %}' alt='search'>
+        </label>
+        <input type='input' class='search'>
+        <input type='submit' id='aside-submit' hidden>
+      </form>
+    </aside>
 
     {# main #}
     <main class='main'>
