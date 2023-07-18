@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <p>디테일 페이지</p>
+  <article class='article'>
+    <h2 class='post-title'>{{ post.title }}</h2>
+    <div class='post-info'> 
+      <p>{{ post.writer }}</p>
+      <div>
+        <a href='{% url "blog:edit" pk=post.id %}'>수정</a>
+        <a href='{% url "blog:delete" pk=post.id %}'>삭제</a>
+      </div>
+      <p>{{ post.views }}</p>
+      <p>{{ post.created_at }}</p>
+    </div>
+    <section>
+      {{ post.content }}
+    </section>
+    <section></section>
+  </article>
+{% endblock %}
+
+{# hide_aside 변수를 True로 전달합니다 #}
+{% block aside %}
+  {% with hide_aside=True %}
+    {{ block.super }}
+  {% endwith %}
 {% endblock %}

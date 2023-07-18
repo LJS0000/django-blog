@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_detail.css' %}">
   </head>
 
   <body>
@@ -26,23 +27,28 @@
     </header>
  
     {# aside #}
-    <aside class='aside'>
-      <form class='search-form'>
-        {% csrf_token %}
-        <label for='aside-submit'>
-          <img src='{% static "images/icon-search.png" %}' alt='search'>
-        </label>
-        <input type='input' class='search' placeholder='검색어를 입력하세요.'>
-        <input type='submit' id='aside-submit' hidden>
-      </form>
-      <div class='aside-tags'>
-        <h2 class='tags-title'>태그</h2>
-        <a class='aside-tag' href='#'>Lorem (20)</a>
-        <a class='aside-tag' href='#'>Ipsum (20)</a>
-        <a class='aside-tag' href='#'>Tag (20)</a>
-        <a class='aside-tag' href='#'>sample (20)</a>
-      </div>
-    </aside>
+    {# detail에서 hide_aside를 상속받아 사라집니다 #}
+    {% block aside %}
+      {% if not hide_aside %}
+        <aside class='aside'>
+          <form class='search-form'>
+            {% csrf_token %}
+            <label for='aside-submit'>
+              <img src='{% static "images/icon-search.png" %}' alt='search'>
+            </label>
+            <input type='input' class='search' placeholder='검색어를 입력하세요.'>
+            <input type='submit' id='aside-submit' hidden>
+          </form>
+          <div class='aside-tags'>
+            <h2 class='tags-title'>태그</h2>
+            <a class='aside-tag' href='#'>Lorem (20)</a>
+            <a class='aside-tag' href='#'>Ipsum (20)</a>
+            <a class='aside-tag' href='#'>Tag (20)</a>
+            <a class='aside-tag' href='#'>sample (20)</a>
+          </div>
+        </aside>
+      {% endif %}
+    {% endblock %}
 
     {# main #}
     <main class='main'>
