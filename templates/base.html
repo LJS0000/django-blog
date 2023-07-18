@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -6,16 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title> Blog </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
   </head>
 
   <body>
-    <header class='header'></header>
+    {# header #}
+    <header class='header'>
+      <a class='logo' href='/'>
+        <img src='{% static "images/logo.png" %}' alt='blog'>
+      </a>
+      <div class='header-btn'>
+        <a class='signin' href='#'>signin</a>
+        <a class='lang' href='#'>kr</a>
+      </div>
+    </header>
+
+    {# aside #}
     <aside class='aside'></aside>
+
+    {# main #}
     <main class='main'>
       <h1>Blog</h1>
       {% block content %}
       {% endblock %}
     </main>
+
+    {# footer #}
     <footer class='footer'></footer>
   </body>
 
