@@ -35,7 +35,7 @@ class PostWriteView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    template_name = 'blog/blog_update.html'
+    template_name = 'blog/blog_edit.html'
     fields = ['title', 'content']
 
 
