@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-  <p>리스트 페이지</p>
+  <div class='card-container'>
+    {% for post in posts %}
+      <div class='card'>
+        <h2 class='card-title'>{{post.title}}</h2>
+        <div class='card-user'>
+          <img src='{% static "images/user.png" %}' alt='profile image' class='card-user-img'>
+          <p class='card-writer'>{{post.writer}}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

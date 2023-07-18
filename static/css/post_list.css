@@ -1,0 +1,47 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2vw;
+}
+
+.card {
+    width: 21vw;
+    height: 21vw;
+    background: #ffffffcc;
+    box-shadow: 0px 5px 15px 10px #00000040;
+    border-radius: 15px;
+    padding: 2.1vw;
+    color: #505050;
+    position: relative;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-image: url();
+    background-color: aqua;
+    transition: 0.5s;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.card-user {
+    position: absolute;
+    bottom: 2.1vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-user-img {
+    width: 3vw;
+    border-radius: 50%;
+}
+
+.card-writer {
+    font-size: 1rem;
+    font-weight: 900;
+}
