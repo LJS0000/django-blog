@@ -5,13 +5,13 @@
 {% block content %}
   <div class='card-container'>
     {% for post in posts %}
-      <div class='card'>
+      <a href='{% url "blog:detail" pk=post.id %}' class='card'>
         <h2 class='card-title'>{{post.title}}</h2>
         <div class='card-user'>
           <img src='{% static "images/user.png" %}' alt='profile image' class='card-user-img'>
           <p class='card-writer'>{{post.writer}}</p>
         </div>
-      </div>
+      </a>
     {% endfor %}
   </div>
 {% endblock %}

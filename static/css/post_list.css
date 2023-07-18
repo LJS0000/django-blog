@@ -15,6 +15,7 @@
     color: #505050;
     position: relative;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .card:hover {
