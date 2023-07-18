@@ -6,23 +6,24 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title> Blog </title>
+    <title> 지수로그 </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
   </head>
 
   <body>
+    <h1 class="sr-only">블로그형 게시판 지수로그</h1>
     {# header #}
     <header class='header'>
       <a class='logo' href='/'>
         <img src='{% static "images/logo.png" %}' alt='blog'>
       </a>
       <div class='header-btn'>
-        <a class='signin' href='#'>signin</a>
-        <a class='lang' href='#'>kr</a>
+        <a class='signin' href='#'>SIGNIN</a>
+        <a class='lang' href='#'>KR</a>
       </div>
     </header>
-
+ 
     {# aside #}
     <aside class='aside'>
       <form class='search-form'>
@@ -30,9 +31,16 @@
         <label for='aside-submit'>
           <img src='{% static "images/icon-search.png" %}' alt='search'>
         </label>
-        <input type='input' class='search'>
+        <input type='input' class='search' placeholder='검색어를 입력하세요.'>
         <input type='submit' id='aside-submit' hidden>
       </form>
+      <div class='aside-tags'>
+        <h2 class='tags-title'>태그</h2>
+        <a class='aside-tag' href='#'>Lorem (20)</a>
+        <a class='aside-tag' href='#'>Ipsum (20)</a>
+        <a class='aside-tag' href='#'>Tag (20)</a>
+        <a class='aside-tag' href='#'>sample (20)</a>
+      </div>
     </aside>
 
     {# main #}
@@ -43,7 +51,20 @@
     </main>
 
     {# footer #}
-    <footer class='footer'></footer>
+    <footer class='footer'>
+      <p>© lezsuuu</p>
+      <div>
+        <a href='https://github.com/LJS0000' target='_blank' class='link-icon'>
+          <img src='{% static "images/icon-github.png" %}' alt='github'>
+        </a>
+        <a href='https://twitter.com/lezsuuu' target='_blank' class='link-icon'>
+          <img src='{% static "images/icon-twitter.png" %}' alt='github'>
+        </a>
+        <a href='https://www.instagram.com/lezsuuu/' target='_blank' class='link-icon'>
+          <img src='{% static "images/icon-insta.png" %}' alt='github'>
+        </a>
+      </div>
+    </footer>
   </body>
 
 </html>
