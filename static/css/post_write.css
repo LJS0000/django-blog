@@ -1,12 +1,7 @@
 .write-container {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 9vh;
     width: 100vw;
     height: 84vh;
-    padding: 3vh 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2%;
 }

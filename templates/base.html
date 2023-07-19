@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_write.css' %}">
     {# ToastUI #}
     <link
         rel="stylesheet"
@@ -34,7 +35,7 @@
     </header>
  
     {# aside #}
-    {# detail에서 hide_aside를 상속받아 사라집니다 #}
+    {# hide_aside를 상속받으면 사라집니다 #}
     {% block aside %}
       {% if not hide_aside %}
         <aside class='aside'>
@@ -64,20 +65,25 @@
     </main>
 
     {# footer #}
-    <footer class='footer'>
-      <p>© lezsuuu</p>
-      <div>
-        <a href='https://github.com/LJS0000' target='_blank'>
-          <img src='{% static "images/icon-github.png" %}' alt='github' class='link-icon'>
-        </a>
-        <a href='https://twitter.com/lezsuuu' target='_blank'>
-          <img src='{% static "images/icon-twitter.png" %}' alt='github' class='link-icon'>
-        </a>
-        <a href='https://www.instagram.com/lezsuuu/' target='_blank'>
-          <img src='{% static "images/icon-insta.png" %}' alt='github' class='link-icon'>
-        </a>
-      </div>
-    </footer>
+    {# hide_footer를 상속받으면 사라집니다 #}
+    {% block footer %}
+      {% if not hide_footer %}
+        <footer class='footer'>
+          <p>© lezsuuu</p>
+          <div>
+            <a href='https://github.com/LJS0000' target='_blank'>
+              <img src='{% static "images/icon-github.png" %}' alt='github' class='link-icon'>
+            </a>
+            <a href='https://twitter.com/lezsuuu' target='_blank'>
+              <img src='{% static "images/icon-twitter.png" %}' alt='github' class='link-icon'>
+            </a>
+            <a href='https://www.instagram.com/lezsuuu/' target='_blank'>
+              <img src='{% static "images/icon-insta.png" %}' alt='github' class='link-icon'>
+            </a>
+          </div>
+        </footer>
+      {% endif %}
+    {% endblock %}
   </body>
 
 </html>

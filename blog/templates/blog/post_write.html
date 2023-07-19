@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="write-container">
-  <form action="{% url 'blog:write' %}" method="post" class>
+  <form action="{% url 'blog:write' %}" method='post' class='write-form'>
     {% csrf_token %}
     <input type='text' class='write-title'>
     <div id='editor' class='wysiwyg'></div>
@@ -35,9 +35,16 @@
 
 {% endblock %}
 
-{# hide_aside 변수를 True로 전달합니다 #}
+{# aside를 숨기기 위한 변수를 전달 #}
 {% block aside %}
   {% with hide_aside=True %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock %}
+
+{# footer를 숨기기 위한 변수를 전달 #}
+{% block footer %}
+  {% with hide_footer=True %}
     {{ block.super }}
   {% endwith %}
 {% endblock %}
