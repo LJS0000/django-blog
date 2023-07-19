@@ -1,7 +1,67 @@
+.write-form input {
+    padding: 0 1rem;
+    color: #505050;
+    border: none;
+}
+
+.write-form input:focus {
+    outline: none;
+}
+
 .write-container {
     position: absolute;
-    left: 0;
     top: 9vh;
-    width: 100vw;
-    height: 84vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+}
+
+.write-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.write-form .title-input {
+    height: 3rem;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.write-form .tag-input {
+    height: 2.5rem;
+    margin: 1rem 1rem 0 1rem;
+    border: 1px solid #505050;
+    border-radius: 15px;
+}
+
+.write-form .write-tags {
+    height: 2rem;
+}
+
+.write-btns {
+    margin: 0 auto;
+    display: flex;
+    gap: 15px;
+    color: #505050;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.write-btns .write-cancle {
+    color: #505050;
+}
+
+.write-btns .write-submit {
+    all: unset;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.write-btns .write-cancle:hover {
+    color: #f9544d;
+}
+
+.write-btns .write-submit:hover {
+    color: #27c238;
 }

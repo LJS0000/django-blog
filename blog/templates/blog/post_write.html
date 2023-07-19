@@ -7,10 +7,19 @@
 <div class="write-container">
   <form action="{% url 'blog:write' %}" method='post' class='write-form'>
     {% csrf_token %}
-    <input type='text' class='write-title'>
-    <div id='editor' class='wysiwyg'></div>
+    <input type='text' class='title-input' placeholder='제목을 입력하세요. 최대 30자'>
+    <div id='editor' class='content-input'></div>
+    <input 
+      type='text' 
+      class='tag-input' 
+      placeholder='태그를 입력하세요. 띄어쓰기로 구분하며, 특수문자는 사용할 수 없습니다.'
+    >
+    <div class='write-tags'></div>
+    <div class='write-btns'>
+      <a href='/' class='write-cancle'>취소할래요</a>
+      <button type='submit' class='write-submit'>저장할래요</button>
+    </div>
     <textarea class='write-textarea' hidden></textarea>
-    <button type='submit'> 저장 </button>
   </form>  
 </div>
 
@@ -19,8 +28,8 @@
     const Editor = toastui.Editor;
     const editor = new Editor({
         el: document.querySelector("#editor"),
-        height: "70vh",
-        initialEditType: "WYSIWYG",
+        height: "65vh",
+        initialEditType: "markdown",
         previewStyle: "vertical",
     });
 
