@@ -30,10 +30,15 @@ class Comment(models.Model):
         return self.content
 
 
-class Hashtag(models.Model):
+class Tag(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=10)
 
     def __str__(self):
         return self.content
+
+
+class PostTag(models.Model):
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    tag = models.ForeignKey('Tag', on_delete=models.CASCADE)

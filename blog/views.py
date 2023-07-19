@@ -6,7 +6,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post, Comment, Hashtag
+from .models import Post, Comment, Tag, PostTag
 
 
 ### Post
