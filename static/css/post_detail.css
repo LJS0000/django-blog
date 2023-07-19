@@ -141,6 +141,7 @@
 .comment-form .submit-btn {
     position: absolute;
     right: 0;
+    cursor: pointer;
 }
 
 .comment-form .comment-input {
