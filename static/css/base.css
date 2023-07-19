@@ -139,11 +139,19 @@ body {
 .footer {
     grid-area: footer;
     width: 100%;
+    color: #505050;
     display: flex;
-    justify-content: space-around;
     align-items: center;
 }
 
-.footer div {
-    gap: 10px;
+.footer div,
+.footer p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.link-icon {
+    width: 70%;
 }
