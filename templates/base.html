@@ -7,14 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title> 지수로그 </title>
+    {# css #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_detail.css' %}">
+    {# ToastUI #}
+    <link
+        rel="stylesheet"
+        href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
   </head>
 
   <body>
-    <h1 class="sr-only">블로그형 게시판 지수로그</h1>
+    <h1 class="sr-only">게시판형 블로그, 지수로그</h1>
     {# header #}
     <header class='header'>
       <a class='logo' href='/'>
