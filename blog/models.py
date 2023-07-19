@@ -22,6 +22,7 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField('Tag', through='PostTag')
     parent = models.ForeignKey(
         'self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies'
     )
@@ -31,14 +32,14 @@ class Comment(models.Model):
 
 
 class Tag(models.Model):
-    post = models.ForeignKey('Post', on_delete=models.CASCADE)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=10)
+    content = models.CharField(max_length=30)
 
     def __str__(self):
         return self.content
 
 
+# 중간 모델
 class PostTag(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     tag = models.ForeignKey('Tag', on_delete=models.CASCADE)
