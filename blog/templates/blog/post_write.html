@@ -1,19 +1,43 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-  <p>작성 페이지</p>
-  <div id="editor"></div>
+
+<div class="write-container">
+  <form action="{% url 'blog:write' %}" method="post" class>
+    {% csrf_token %}
+    <input type='text' class='write-title'>
+    <div id='editor' class='wysiwyg'></div>
+    <textarea class='write-textarea' hidden></textarea>
+    <button type='submit'> 저장 </button>
+  </form>  
+</div>
+
+{# Toast UI editor #}
 <script>
     const Editor = toastui.Editor;
-
     const editor = new Editor({
         el: document.querySelector("#editor"),
-        height: "600px",
-        initialEditType: "markdown",
+        height: "70vh",
+        initialEditType: "WYSIWYG",
         previewStyle: "vertical",
     });
 
-    // editor.getHTML()
-    // editor.getMarkdown()
+    const toMarkdown = (e) => {
+      e.preventDefault()
+      const md = editor.getMarkdown()
+      const textarea = document.querySelector('.write-textarea')
+      textarea.value = md
+      return
+    }
 </script>
+
+{% endblock %}
+
+{# hide_aside 변수를 True로 전달합니다 #}
+{% block aside %}
+  {% with hide_aside=True %}
+    {{ block.super }}
+  {% endwith %}
 {% endblock %}
