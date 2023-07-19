@@ -10,8 +10,11 @@
       <div>
         <p class='writer'>{{ post.writer }}</p>
         <div class='btn-container'>
-            <a href='{% url "blog:edit" pk=post.id %}' class='edit'>수정</a>
-            <a href='{% url "blog:delete" pk=post.id %}' class='delete'>삭제</a>
+            <a href='{% url "blog:edit" pk=post.id %}' class='edit btn'>수정</a>
+            <form action="{% url 'blog:delete' pk=post.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="삭제" class="delete btn">
+            </form>
         </div>
       </div>
       <div>
