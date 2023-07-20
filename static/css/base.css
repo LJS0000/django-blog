@@ -152,6 +152,17 @@ body {
     gap: 1rem;
 }
 
+.search-tag {
+    color: #505050;
+    text-decoration: none;
+}
+
+.search-tag:hover {
+    font-weight: 900;
+    transform: scaleX(0.9);
+    transition: 0.2s;
+}
+
 /* main */
 .main {
     grid-area: main;

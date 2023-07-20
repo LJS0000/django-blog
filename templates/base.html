@@ -64,10 +64,10 @@
           </form>
           {# 태그 목록 #}
           <section class='tags-container'>
-            <h2 class='tags-title'>태그</h2>
+            <h2 class='tags-title'>신규 태그</h2>
             <div class='tags'>
               {% for tag in tags %}
-                <a href="{% url 'blog:tag-lists' tag.name %}">📌 {{tag.name}}</a>
+                <a href="{% url 'blog:tag-lists' tag.name %}" class='search-tag'>📌 {{tag.name}}</a>
               {% endfor %}
             </div>
           </section>
