@@ -24,11 +24,14 @@ class IndexView(ListView):
     # 최신 태그 10개를 가져옴
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        mytags = Tag.objects.all()
         tags = Tag.objects.order_by('-id')[:10]
+        context['mytags'] = mytags
         context['tags'] = tags
         return context
 
 
+# 태그에 해당하는 리스트 조회
 class TagPostListView(ListView):
     model = Post
     template_name = 'blog/tag_post_list.html'
@@ -50,6 +53,12 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        mytags = Tag.objects.filter(post__id=self.kwargs['pk'])
+        context['mytags'] = mytags
+        return context
 
 
 class PostWriteView(LoginRequiredMixin, CreateView):
@@ -126,6 +135,6 @@ class TagWriteView(LoginRequiredMixin, CreateView):
 
 
 class TagDeleteView(LoginRequiredMixin, DeleteView):
-    model = Comment
+    model = Tag
     template_name = 'blog/post_detail.html'
     success_url = None

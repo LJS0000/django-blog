@@ -8,7 +8,7 @@
     <h2 class='post-title'>{{ post.title }}</h2>
     <div class='post-info'> 
       <div>
-        <p class='writer'>{{ post.writer }}</p>
+        <p class='writer'>{{ post.writer.username }}</p>
         <div class='btn-container'>
             <a href='{% url "blog:edit" pk=post.id %}' class='edit btn'>수정</a>
             <form action="{% url 'blog:delete' pk=post.id %}" method="post">
@@ -24,9 +24,17 @@
     </div>
     <div class='post-wrapper background hide-scroll'>
       <div class='content'>{{ post.content }}</div>
-      <div class='tags'>
-        태그가 들어갑니다
-      </div>
+    </div>
+    {# 게시글 Tag #}
+    <div class='tags'>
+      {% for mytag in mytags %}
+        <div class='tag-wrapper'>
+          <a>{{ mytag.name }}</a>
+          {% if mytag.writer == user %}
+            <a href='{% url "blog:tag-delete" pk=mytag.pk %}'>X</a>
+          {% endif %}
+        </div>
+      {% endfor %}
     </div>
     </section>
     <section class='comment-container background hide-scroll'>
@@ -54,17 +62,3 @@
     {{ block.super }}
   {% endwith %}
 {% endblock %}
-
-{# 태그
-  <input 
-    type='text'
-    class='tag-input' 
-    placeholder='태그를 입력하세요. 띄어쓰기로 구분하며, 특수문자는 사용할 수 없습니다.'
-  >
-  <div class='write-tags'>
-    {% for tag in post.tags.all %}
-      <p>{{tag.content}}</p>
-      <button>X</button>
-    {% endfor %}
-  </div>
-#}
