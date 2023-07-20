@@ -3,24 +3,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView, UpdateView, DetailView
-from django.contrib.auth.forms import (
-    AuthenticationForm,
-    UserCreationForm,
-    UserChangeForm,
+from .forms import (
+    CustomUserCreationForm,
+    CustomAuthenticationForm,
+    CustomUserChangeForm,
 )
-from .forms import CustomUserChangeForm
 from django.urls import reverse_lazy
 
 
 ### User
 class UserCreateView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'user/user_signup.html'
     success_url = reverse_lazy('user:signin')
 
 
 class UserLoginView(LoginView):
-    form_class = AuthenticationForm
+    form_class = CustomAuthenticationForm
     template_name = 'user/user_signin.html'
     success_url = '/'
 

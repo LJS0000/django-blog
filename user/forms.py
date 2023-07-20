@@ -1,9 +1,36 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    UserChangeForm,
+)
 
 
 User = get_user_model()
+
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.CharField(widget=forms.TextInput(attrs={'class': 'signup-email'}))
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'signup-password1'})
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'signup-password2'})
+    )
+
+    class Meta:
+        model = User
+        fields = ['email', 'password1', 'password2']
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        email = self.cleaned_data['email']
+        username = email.split('@')[0]  # 이메일 앞부분을 username에 저장
+        user.username = username
+        if commit:
+            user.save()
+        return user
 
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -18,7 +45,7 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    password = None  # 비밀번호 필드 제거
+    password = None
 
     class Meta(UserChangeForm.Meta):
         model = User
