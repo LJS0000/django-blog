@@ -46,12 +46,12 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'blog/post_edit.html'
     fields = ['title', 'content']
 
-    def get_initial(self):
-        initial = super().get_initial()
-        post = self.get_object()
-        initial['title'] = post.title
-        initial['content'] = post.content
-        return initial
+    # def get_initial(self):
+    #     initial = super().get_initial()
+    #     post = self.get_object()
+    #     initial['title'] = post.title
+    #     initial['content'] = post.content
+    #     return initial
 
     def get_success_url(self):
         post = self.get_object()

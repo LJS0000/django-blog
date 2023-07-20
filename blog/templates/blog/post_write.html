@@ -1,53 +1,15 @@
-{# 디테일페이지로 옮기기     
-  <input 
-    type='text' 
-    class='tag-input' 
-    placeholder='태그를 입력하세요. 띄어쓰기로 구분하며, 특수문자는 사용할 수 없습니다.'
-  >
-  <div class='write-tags'></div>
-#}
 {% extends 'base.html' %}
 
 {% load static %}
 
 {% block content %}
-
-<div class="write-container">
-  <form action="{% url 'blog:write' %}" method='post' class='write-form'>
-    {% csrf_token %}
-    {{form}}
-    <button type='submit' class='write-submit' onclick="toMarkdown()">저장</button>
-  </form>  
-
-  <input type='text' class='title-input' placeholder='제목을 입력하세요. 최대 30자'>
-  <div id='editor' class='content-input'></div>
-  <textarea class='write-textarea' hidden></textarea>
-  <div class='write-btns'>
-    <a href='/' class='write-cancle'>목록으로</a>
-    <button type='submit' class='write-submit'>저장</button>
+  <div class="write-container">
+    <form action="{% url 'blog:write' %}" method='post' class='write-form'>
+      {% csrf_token %}
+      {{form}}
+      <button type='submit' class='write-submit'>저장</button>
+    </form>  
   </div>
-</div>
-
-{# Toast UI editor #}
-<script>
-    const Editor = toastui.Editor;
-    const editor = new Editor({
-        el: document.querySelector("#editor"),
-        height: "65vh",
-        initialEditType: "markdown",
-        previewStyle: "vertical",
-    });
-
-    const toMarkdown = (e) => {
-      e.preventDefault()
-      console.log(e)
-      const md = editor.getMarkdown()
-      const textarea = document.querySelector('.write-textarea')
-      textarea.value = md
-      console.log(textarea.value)
-    }
-</script>
-
 {% endblock %}
 
 {# aside를 숨기기 위한 변수를 전달 #}

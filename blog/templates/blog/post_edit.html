@@ -3,50 +3,13 @@
 {% load static %}
 
 {% block content %}
-
-<div class="write-container">
-  <form action="{% url 'blog:write' %}" method='post' class='write-form'>
-    {% csrf_token %}
-    <input type='text' class='title-input' placeholder='제목을 입력하세요. 최대 30자'>
-    <div id='editor' class='content-input'></div>
-    <input 
-      type='text'
-      class='tag-input' 
-      placeholder='태그를 입력하세요. 띄어쓰기로 구분하며, 특수문자는 사용할 수 없습니다.'
-    >
-    <div class='write-tags'>
-      {% for tag in post.tags.all %}
-        <p>{{tag.content}}</p>
-        <button>X</button>
-      {% endfor %}
-    </div>
-    <div class='write-btns'>
-      <a href='/' class='write-cancle'>취소할래요</a>
-      <button type='submit' class='write-submit'>저장할래요</button>
-    </div>
-    <textarea class='write-textarea' hidden></textarea>
-  </form>  
-</div>
-
-{# Toast UI editor #}
-<script>
-    const Editor = toastui.Editor;
-    const editor = new Editor({
-        el: document.querySelector("#editor"),
-        height: "65vh",
-        initialEditType: "markdown",
-        previewStyle: "vertical",
-    });
-
-    const toMarkdown = (e) => {
-      e.preventDefault()
-      const md = editor.getMarkdown()
-      const textarea = document.querySelector('.write-textarea')
-      textarea.value = md
-      return
-    }
-</script>
-
+  <div class="write-container">
+    <form action="{% url 'blog:edit' pk=post.pk %}" method='post' class='write-form'>
+      {% csrf_token %}
+      {{form}}
+      <button type='submit' class='write-submit'>저장</button>
+    </form>  
+  </div>
 {% endblock %}
 
 {# aside를 숨기기 위한 변수를 전달 #}
