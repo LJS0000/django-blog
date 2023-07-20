@@ -31,12 +31,12 @@
     </section>
     <section class='comment-container background hide-scroll'>
       <div class='input-container'>
-        <img src='{% static "images/user.png" %}' alt='search' class='user-img'>
+        <img src='{% static "images/user.png" %}' alt='user-image' class='user-img'>
         <form class='comment-form'>
           {% csrf_token %}
           <input type='input' class='comment-input' placeholder='댓글을 입력하세요. 최대 300자'>
           <label for='comment-submit' class='submit-btn'>
-            <img src='{% static "images/icon-send.png" %}' alt='search'>
+            <img src='{% static "images/icon-send.png" %}' alt='user-image'>
           </label>
           <input type='submit' id='comment-submit' hidden>
         </form>
