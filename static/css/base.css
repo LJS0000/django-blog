@@ -20,7 +20,7 @@ body {
         'header header'
         'aside main'
         'footer main';
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: 9vh 1fr 7vh;
     background-image: url('/static/images/bg.png');
     background-position: center center;
@@ -156,7 +156,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 10px;
+    margin: 0 1vw;
+    font-size: 1.2vw;
 }
 
 .link-icon {

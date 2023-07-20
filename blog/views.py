@@ -16,7 +16,6 @@ class IndexView(ListView):
     model = Post
     template_name = 'blog/post_list.html'
     context_object_name = 'posts'
-    paginate_by = 9
 
     def get_queryset(self):
         return Post.objects.all().order_by('-created_at')
