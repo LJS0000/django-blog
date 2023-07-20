@@ -6,8 +6,14 @@
   <div class="write-container">
     <form action="{% url 'blog:edit' pk=post.pk %}" method='post' class='write-form'>
       {% csrf_token %}
-      {{form}}
-      <button type='submit' class='write-submit'>저장</button>
+      <p>제목</p>
+      {{form.title}}
+      <p>내용</p>
+      {{form.content}}
+      <div class='write-btns'>
+        <a href='{% url "blog:detail" pk=post.pk %}' class='write-cancle'>취소</a>
+        <button type='submit' class='write-submit'>저장</button>
+      </div>
     </form>  
   </div>
 {% endblock %}
