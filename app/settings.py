@@ -8,7 +8,7 @@ AUTH_USER_MODEL = 'user.User'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # login URL
-LOGIN_URL = '/user/login'
+LOGIN_URL = '/user/signin'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-j95+atc5%&o%f$#68lz6zr4eq_p4#183(r2x(815b8_hc66rq*"
@@ -68,14 +68,9 @@ WSGI_APPLICATION = "app.wsgi.application"
 # Database
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db1',
-        'USER': 'admin',
-        'PASSWORD': 'qwer1234',
-        'HOST': '200.200.200.139',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'},
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
