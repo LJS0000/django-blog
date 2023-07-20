@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.views.generic import (
     ListView,
     CreateView,
@@ -19,11 +20,6 @@ class IndexView(ListView):
 
     def get_queryset(self):
         return Post.objects.all().order_by('-created_at')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['tags'] = Tag.objects.all()
-        return context
 
 
 class PostDetailView(DetailView):
@@ -95,13 +91,28 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'blog/post_detail.html'
+    success_url = None
 
 
 ### Tag
+class TagListView(ListView):
+    model = Tag
+    template_name = 'base.html'
+    context_object_name = 'tags'
+
+    def get_queryset(self):
+        # 가장 개수가 많은 상위 10개의 태그를 가져오기 위해 annotate와 order_by 사용
+        return Tag.objects.annotate(num_tags=Count('post')).order_by('-num_tags')[:10]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
 class TagWriteView(LoginRequiredMixin, CreateView):
     model = Tag
-    template_name = 'blog/post_write.html'
-    fields = ['content']
+    template_name = 'blog/post_detail.html'
+    fields = ['name']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -110,4 +121,5 @@ class TagWriteView(LoginRequiredMixin, CreateView):
 
 class TagDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
-    template_name = 'blog/post_edit.html'
+    template_name = 'blog/post_detail.html'
+    success_url = None
