@@ -29,8 +29,8 @@
         <img src='{% static "images/logo.png" %}' alt='blog' class='logo'>
       </a>
       <div class='header-btn'>
-        {#  로그인 유저  -> menu 
-            비로그인 유저 -> 로그인 버튼 #}
+        {# 로그인 유저  -> menu     #}
+        {# 비로그인 유저 -> 로그인 버튼 #}
         {% if user.is_authenticated %}
           <img src='{% static "images/user.png" %}' alt='user-image' class='profile-img'>
           <div class="dropdown" style="display: none;">
