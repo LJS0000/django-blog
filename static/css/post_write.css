@@ -1,42 +1,47 @@
+.write-container {
+    position: absolute;
+    top: 15vh;
+    bottom: 0;
+    left: 20vw;
+    right: 20vw;
+}
+
+.write-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.write-form {
+    color: #505050;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
 .write-form input {
-    padding: 0 1rem;
+    padding: 1rem 1.5rem;
     color: #505050;
     border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+}
+
+.write-form textarea {
+    height: 35vh;
+    padding: 1.5rem;
+    color: #505050;
+    border: none;
+    border-radius: 15px;
+    resize: none;
+    font-size: 1.2rem;
 }
 
 .write-form input:focus {
     outline: none;
 }
 
-.write-container {
-    position: absolute;
-    top: 9vh;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-}
-
-.write-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.write-form .title-input {
-    height: 3rem;
-    font-size: 1.2rem;
-    font-weight: 900;
-}
-
-.write-form .tag-input {
-    height: 2.5rem;
-    margin: 1rem 1rem 0 1rem;
-    border: 1px solid #505050;
-    border-radius: 15px;
-}
-
-.write-form .write-tags {
-    height: 2rem;
+.write-form textarea:focus {
+    outline: none;
 }
 
 .write-btns {
@@ -49,6 +54,7 @@
 }
 
 .write-btns .write-cancle {
+    text-decoration: underline;
     color: #505050;
 }
 

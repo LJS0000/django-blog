@@ -1,0 +1,47 @@
+.pf-edit-form {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pf-edit-form p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #505050;
+    font-size: 1.2rem;
+}
+
+.pf-edit-form input {
+    height: 1.3rem;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+
+.pf-edit-form input:focus {
+    outline: none;
+}
+
+.pf-edit-btns {
+    display: flex;
+    gap: 1rem;
+    margin: 0 auto;
+}
+
+.pf-edit-btns a {
+    text-decoration: underline;
+    color: #505050;
+}
+
+.pf-edit-btns button {
+    all: unset;
+    text-decoration: underline;
+    color: #505050;
+}
+
+.pf-edit-btns button:hover {
+    color: #27c238;
+}

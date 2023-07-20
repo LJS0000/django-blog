@@ -24,6 +24,7 @@
 }
 
 .profile-container p {
+    width: max-content;
     font-size: 1.3rem;
     font-weight: 700;
 }
