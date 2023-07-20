@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView, UpdateView, DetailView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .forms import UserUpdateForm
+from .forms import UserAuthenticationForm, UserUpdateForm
 from django.urls import reverse_lazy
 
 
@@ -16,7 +16,7 @@ class UserCreateView(CreateView):
 
 
 class UserLoginView(LoginView):
-    form_class = AuthenticationForm
+    form_class = UserAuthenticationForm
     template_name = 'user/user_signin.html'
     success_url = '/'
 

@@ -7,18 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title> 지수로그 </title>
-    {# css #}
+    {# ToastUI #}
+    <link
+    rel="stylesheet"
+    href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    {# reset CSS #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    {# base.html CSS #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {# blog CSS #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_detail.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_write.css' %}">
-    {# ToastUI #}
-    <link
-        rel="stylesheet"
-        href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
-    />
-    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    {# user CSS #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_signin.css' %}">
   </head>
 
   <body>
@@ -29,7 +33,7 @@
         <img src='{% static "images/logo.png" %}' alt='blog'>
       </a>
       <div class='header-btn'>
-        <a class='signin' href='#'>SIGNIN</a>
+        <a class='signin' href='{% url "user:signin" %}'>SIGNIN</a>
         <a class='lang' href='#'>KR</a>
       </div>
     </header>

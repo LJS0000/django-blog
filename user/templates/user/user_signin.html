@@ -3,5 +3,14 @@
 {% load static %}
 
 {% block content %}
-    <div>로그인</div>
+<h2>SIGN IN</h2>
+<form action='{% url "user:signin" %}' method='post' class='signin-form'>
+    {% csrf_token %}
+    <div class='signin-inputs'>
+        {{form}}
+    </div>
+    <a href='{% url "user:signup" %}'>계정이 없으세요?</a>
+    <button type='submit'>로그인하기</button>
+</form>
+  
 {% endblock %}
