@@ -17,8 +17,33 @@ class IndexView(ListView):
     template_name = 'blog/post_list.html'
     context_object_name = 'posts'
 
+    # 포스트를 최신순으로 가져옴
     def get_queryset(self):
         return Post.objects.all().order_by('-created_at')
+
+    # 최신 태그 10개를 가져옴
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tags = Tag.objects.order_by('-id')[:10]
+        context['tags'] = tags
+        return context
+
+
+class TagPostListView(ListView):
+    model = Post
+    template_name = 'blog/tag_post_list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        tag_name = self.kwargs['tag_name']
+        return Post.objects.filter(tags__name=tag_name).order_by('-created_at')
+
+    # 최신 태그 10개를 가져옴
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tags = Tag.objects.order_by('-id')[:10]
+        context['tags'] = tags
+        return context
 
 
 class PostDetailView(DetailView):
@@ -44,13 +69,6 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'blog/post_edit.html'
     fields = ['title', 'content']
-
-    # def get_initial(self):
-    #     initial = super().get_initial()
-    #     post = self.get_object()
-    #     initial['title'] = post.title
-    #     initial['content'] = post.content
-    #     return initial
 
     def get_success_url(self):
         post = self.get_object()
@@ -97,23 +115,6 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
 
 
 ### Tag
-class TagListView(ListView):
-    model = Tag
-    template_name = 'base.html'
-    context_object_name = 'tags'
-
-    def get_queryset(self):
-        # 각 태그와 해당 태그의 블로그 글 개수를 가져오기 위해 annotate와 order_by 사용
-        tags_cnt = Tag.objects.annotate(num_posts=Count('post')).order_by('-num_posts')[
-            :10
-        ]
-        return tags_cnt
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-
 class TagWriteView(LoginRequiredMixin, CreateView):
     model = Tag
     template_name = 'blog/post_detail.html'

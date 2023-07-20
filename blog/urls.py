@@ -45,5 +45,10 @@ urlpatterns = [
         name='tag-delete',
     ),
     # 태그 검색
+    path(
+        "tag/<str:tag_name>/",
+        views.TagPostListView.as_view(),
+        name='tag-lists',
+    ),
     # 일반 검색
 ]
