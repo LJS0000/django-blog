@@ -9,7 +9,7 @@
         <h2 class='card-title'>{{post.title}}</h2>
         <div class='card-user'>
           <img src='{% static "images/user.png" %}' alt='profile image' class='card-user-img'>
-          <p class='card-writer'>{{post.writer}}</p>
+          <p class='card-writer'>{{post.writer.username}}</p>
         </div>
       </a>
     {% endfor %}

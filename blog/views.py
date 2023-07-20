@@ -25,7 +25,7 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         mytags = Tag.objects.all()
-        tags = Tag.objects.order_by('-id')[:10]
+        tags = Tag.objects.order_by('-id')[:7]
         context['mytags'] = mytags
         context['tags'] = tags
         return context
