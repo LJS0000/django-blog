@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -67,9 +68,14 @@ WSGI_APPLICATION = "app.wsgi.application"
 # Database
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db1',
+        'USER': 'admin',
+        'PASSWORD': 'qwer1234',
+        'HOST': '200.200.200.139',
+        'PORT': '3306',
+        'OPTIONS': {'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'},
     }
 }
 
@@ -128,9 +134,6 @@ DEBUG가 True로 설정되어 있으면 STATIC_ROOT 설정은 작용하지 않�
 STATIC_ROOT 경로는 STATICFILES_DIRS 등록된 경로와 같은 경로가 있어서는 안 된다.
 """
 # STATIC_ROOT -> 프로젝트 완성 후 작업
-
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
 
 
 # Default primary key field type
