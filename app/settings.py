@@ -27,10 +27,10 @@ LOGIN_URL = '/user/signin'
 
 
 # SECRET_KEY = get_secret("SECRET_KEY")
-"SECRET_KEY": "django-insecure-mfloo3=*g&%kfi6i6%@fyr_l=-6vcke!$1-a@52tr+8d+la@t!"
+SECRET_KEY = "django-insecure-mfloo3=*g&%kfi6i6%@fyr_l=-6vcke!$1-a@52tr+8d+la@t!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
-    "storages",
 ]
 
 MIDDLEWARE = [
