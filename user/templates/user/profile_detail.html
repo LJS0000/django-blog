@@ -4,11 +4,19 @@
 
 {% block content %}
 <div class='profile-container'>
+    <h2>내 프로필</h2>
     <img src="{% static 'images/' %}{{ user.profile_img }}">
-    이메일: {{user.email}}
-    닉네임: {{user.username}}
+    <p>이메일 {{user.email}}</p>
+    <p>닉네임 {{user.username}}</p>
     <a href='{% url "user:pf-edit" %}'> 내 정보 수정 </a>
 </div>
 
 {% endblock %}
 
+
+{# hide_aside 변수를 True로 전달합니다 #}
+{% block aside %}
+  {% with hide_aside=True %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock %}
