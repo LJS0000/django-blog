@@ -48,13 +48,19 @@ body {
     padding: 0 30px;
 }
 
-.header img {
+.header .logo {
     width: 80%;
 }
 
 .header-btn {
     display: flex;
     gap: 50px;
+}
+
+.header-btn .profile-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 
 .header-btn .signin,

@@ -29,11 +29,20 @@
     <h1 class="sr-only">게시판형 블로그, 지수로그</h1>
     {# header #}
     <header class='header'>
-      <a class='logo' href='/'>
-        <img src='{% static "images/logo.png" %}' alt='blog'>
+      <a href='/'>
+        <img src='{% static "images/logo.png" %}' alt='blog' class='logo'>
       </a>
       <div class='header-btn'>
-        <a class='signin' href='{% url "user:signin" %}'>SIGNIN</a>
+        {% if user.is_authenticated %}
+          <img src='{% static "images/user.png" %}' alt='user-image' class='profile-img'>
+          {# dropdown menu #}
+          <div class="dropdown" style="display: none;">
+            <a href='{% url "user:profile" %}'>나의 프로필</a>
+            <a href='{% url "user:logout" %}'>로그아웃</a>
+          </div>
+        {% else %}
+          <a class='signin' href='{% url "user:signin" %}'>SIGNIN</a>
+        {% endif %}
         <a class='lang' href='#'>KR</a>
       </div>
     </header>
@@ -86,6 +95,8 @@
         </footer>
       {% endif %}
     {% endblock %}
+    <script src='{% static "js/dropdown.js" %}'></script>
+
   </body>
 
 </html>
