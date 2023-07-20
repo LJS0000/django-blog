@@ -1,0 +1,73 @@
+.write-container {
+    position: absolute;
+    top: 15vh;
+    bottom: 0;
+    left: 20vw;
+    right: 20vw;
+}
+
+.write-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.write-form {
+    color: #505050;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.write-form input {
+    padding: 1rem 1.5rem;
+    color: #505050;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+}
+
+.write-form textarea {
+    height: 35vh;
+    padding: 1.5rem;
+    color: #505050;
+    border: none;
+    border-radius: 15px;
+    resize: none;
+    font-size: 1.2rem;
+}
+
+.write-form input:focus {
+    outline: none;
+}
+
+.write-form textarea:focus {
+    outline: none;
+}
+
+.write-btns {
+    margin: 0 auto;
+    display: flex;
+    gap: 15px;
+    color: #505050;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.write-btns .write-cancle {
+    text-decoration: underline;
+    color: #505050;
+}
+
+.write-btns .write-submit {
+    all: unset;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.write-btns .write-cancle:hover {
+    color: #f9544d;
+}
+
+.write-btns .write-submit:hover {
+    color: #27c238;
+}

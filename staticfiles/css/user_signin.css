@@ -1,0 +1,66 @@
+.user-roll {
+    position: absolute;
+    width: 40vw;
+    top: 30vh;
+    left: calc(50% - 20vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #505050;
+    font-size: 1.2rem;
+}
+
+.signin-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    color: #505050;
+    font-size: 1.3rem;
+}
+
+.signin-form input {
+    height: 1.3rem;
+    width: 15vw;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 1rem;
+}
+
+.signin-form input:focus {
+    outline: none;
+}
+
+.pf-edit-btns {
+    display: flex;
+    gap: 1rem;
+    margin: 5rem auto;
+}
+
+.pf-edit-btns a {
+    text-decoration: underline;
+    color: #505050;
+}
+
+.pf-edit-btns button {
+    all: unset;
+    text-decoration: underline;
+    color: #505050;
+}
+
+.pf-edit-btns a:hover {
+    text-decoration: underline;
+    color: #f8b528;
+}
+
+.pf-edit-btns button:hover {
+    color: #27c238;
+}

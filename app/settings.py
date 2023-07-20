@@ -1,5 +1,6 @@
 from pathlib import Path
-import os
+import os, json
+from django.core.exceptions import ImproperlyConfigured
 
 # Auth user
 AUTH_USER_MODEL = 'user.User'
@@ -11,10 +12,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 LOGIN_URL = '/user/signin'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-j95+atc5%&o%f$#68lz6zr4eq_p4#183(r2x(815b8_hc66rq*"
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+
+def get_secret(setting, secrets=secrets):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -105,30 +120,11 @@ USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
-
-"""
-개발 단계에서 사용하는 정적 파일이 위치한 경로들을 지정
-튜플 배치 순서 대로 정적 파일을 탐색 우선순위로 작용
-"""
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-"""
-문자열은 반드시 /로 끝나야 한다. 
-findstatic 명령어로 탐색되는 정적 파일 경로에 
-STATIC_URL 경로를 합치면 실제 웹에서 접근 가능한 URL이 된다.
-http://127.0.0.1:8000/static/images/logo-fff.png
-"""
-STATIC_URL = '/static/'
-
-"""
-collectstatic 명령어로 
-Django 프로젝트에서 사용하는 모든 정적 파일을 한 곳에 모아넣는 경로
-DEBUG가 True로 설정되어 있으면 STATIC_ROOT 설정은 작용하지 않는다.
-STATIC_ROOT 경로는 STATICFILES_DIRS 등록된 경로와 같은 경로가 있어서는 안 된다.
-"""
-# STATIC_ROOT -> 프로젝트 완성 후 작업
 
 
 # Default primary key field type

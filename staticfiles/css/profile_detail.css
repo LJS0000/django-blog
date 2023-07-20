@@ -1,0 +1,41 @@
+.profile-container {
+    position: absolute;
+    z-index: 1;
+    top: 16vh;
+    right: 45%;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    color: #505050;
+    gap: 2rem;
+}
+
+.profile-container h2 {
+    font-size: 2.3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.profile-container img {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 100%;
+}
+
+.profile-container p {
+    width: max-content;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.profile-container a {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #505050;
+    text-align: center;
+}
+
+.profile-container a:hover {
+    color: #f8b528;
+}
