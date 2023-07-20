@@ -48,11 +48,9 @@
             <input type='submit' id='aside-submit' hidden>
           </form>
           <div class='aside-tags'>
-            <h2 class='tags-title'>태그</h2>
-            <a class='aside-tag' href='#'>Lorem (20)</a>
-            <a class='aside-tag' href='#'>Ipsum (20)</a>
-            <a class='aside-tag' href='#'>Tag (20)</a>
-            <a class='aside-tag' href='#'>sample (20)</a>
+            {% for tag in tags_cnt %}
+              <p>{{tag.name}} {{tag.count}}</p>
+            {% endfor %}
           </div>
         </aside>
       {% endif %}

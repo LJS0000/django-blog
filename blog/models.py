@@ -33,10 +33,11 @@ class Comment(models.Model):
 
 class Tag(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
+    posts = models.ManyToManyField('Post', through='PostTag')
 
     def __str__(self):
-        return self.content
+        return self.name
 
 
 # 중간 모델

@@ -8,7 +8,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from .models import Post, Comment, Tag, PostTag
+from .models import Post, Comment, Tag
 
 
 ### Post
@@ -101,8 +101,11 @@ class TagListView(ListView):
     context_object_name = 'tags'
 
     def get_queryset(self):
-        # 가장 개수가 많은 상위 10개의 태그를 가져오기 위해 annotate와 order_by 사용
-        return Tag.objects.annotate(num_tags=Count('post')).order_by('-num_tags')[:10]
+        # 각 태그와 해당 태그의 블로그 글 개수를 가져오기 위해 annotate와 order_by 사용
+        tags_cnt = Tag.objects.annotate(num_posts=Count('post')).order_by('-num_posts')[
+            :10
+        ]
+        return tags_cnt
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
