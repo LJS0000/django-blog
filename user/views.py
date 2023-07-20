@@ -3,8 +3,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView, UpdateView, DetailView
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .forms import UserAuthenticationForm, UserUpdateForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserCreationForm,
+    UserChangeForm,
+)
+from .forms import CustomUserChangeForm
 from django.urls import reverse_lazy
 
 
@@ -16,7 +20,7 @@ class UserCreateView(CreateView):
 
 
 class UserLoginView(LoginView):
-    form_class = UserAuthenticationForm
+    form_class = AuthenticationForm
     template_name = 'user/user_signin.html'
     success_url = '/'
 
@@ -37,7 +41,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
-    form_class = UserUpdateForm
+    form_class = CustomUserChangeForm
     template_name = 'user/profile_edit.html'
     success_url = reverse_lazy('user:profile')
 

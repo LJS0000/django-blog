@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<h2>SIGN IN</h2>
+<h2>로그인</h2>
 <form action='{% url "user:signin" %}' method='post' class='signin-form'>
     {% csrf_token %}
     <div class='signin-inputs'>

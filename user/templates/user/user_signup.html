@@ -3,5 +3,13 @@
 {% load static %}
 
 {% block content %}
-    <div>회원가입</div>
+<h2>회원가입</h2>
+<form action='{% url "user:signup" %}' method='post' class='signup-form'>
+    {% csrf_token %}
+    <div class='signin-inputs'>
+        {{form}}
+    </div>
+    <button type='submit'>가입하기</button>
+</form>
+  
 {% endblock %}
