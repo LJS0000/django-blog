@@ -5,7 +5,7 @@ app_name = 'blog'
 
 urlpatterns = [
     # 글 목록 조회, 태그 목록 조회
-    path("", views.Index.as_view(), name='list'),
+    path("", views.IndexView.as_view(), name='list'),
     # 글 상세 조회, 글 태그 조회, 댓글 조회
     path("detail/<int:pk>/", views.PostDetailView.as_view(), name='detail'),
     # 글 작성
