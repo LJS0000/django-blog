@@ -9,6 +9,7 @@
     <div class='post-info'> 
       <div>
         <p class='writer'>{{ post.writer.username }}</p>
+        {% if post.writer == user %}
         <div class='btn-container'>
             <a href='{% url "blog:edit" pk=post.id %}' class='edit btn'>수정</a>
             <form action="{% url 'blog:delete' pk=post.id %}" method="post">
@@ -16,6 +17,7 @@
               <input type="submit" value="삭제" class="delete btn">
             </form>
         </div>
+        {% endif %}
       </div>
       <div>
         <p class='views'>{{ post.views }} views 👀</p>
@@ -37,10 +39,12 @@
       {% endfor %}
     </div>
     </section>
+    {# 댓글 #}
     <section class='comment-container background hide-scroll'>
       <div class='input-container'>
         <img src='{% static "images/user.png" %}' alt='user-image' class='user-img'>
-        <form class='comment-form'>
+        {# 댓글 작성 #}
+        <form action="{% url 'blog:cm-write' pk=post.pk %}" method='post' class='comment-form'>
           {% csrf_token %}
           <input type='input' class='comment-input' placeholder='댓글을 입력하세요. 최대 300자'>
           <label for='comment-submit' class='submit-btn'>

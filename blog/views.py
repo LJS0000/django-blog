@@ -93,17 +93,17 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 ### Comment
 class CommentWriteView(LoginRequiredMixin, CreateView):
     model = Comment
-    template_name = 'blog/post_list.html'
+    template_name = 'blog/post_detail.html'
     fields = ['content']
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
 
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
-    template_name = 'blog/post_list.html'
+    template_name = 'blog/post_detail.html'
     fields = ['content']
 
     def get_initial(self):
@@ -114,13 +114,12 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         comment = self.get_object()
-        return reverse_lazy('blog:detail', kwargs={'pk': comment.post})
+        return reverse_lazy('blog:detail', kwargs={'pk': comment.post_id})
 
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'blog/post_detail.html'
-    success_url = None
 
 
 ### Tag
