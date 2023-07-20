@@ -37,6 +37,7 @@
           <img src='{% static "images/user.png" %}' alt='user-image' class='profile-img'>
           {# dropdown menu #}
           <div class="dropdown" style="display: none;">
+            <a href='{% url "blog:write" %}'>글 작성</a>
             <a href='{% url "user:profile" %}'>나의 프로필</a>
             <a href='{% url "user:logout" %}'>로그아웃</a>
           </div>

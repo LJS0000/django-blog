@@ -7,7 +7,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse_lazy
 from .models import Post, Comment, Tag
 
 
@@ -34,8 +34,11 @@ class PostWriteView(LoginRequiredMixin, CreateView):
     fields = ['title', 'content']
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.writer = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('blog:list')
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
@@ -52,7 +55,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         post = self.get_object()
-        return reverse('blog:detail', kwargs={'pk': post.pk})
+        return reverse_lazy('blog:detail', kwargs={'pk': post.pk})
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
@@ -85,7 +88,7 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         comment = self.get_object()
-        return reverse('blog:detail', kwargs={'pk': comment.post})
+        return reverse_lazy('blog:detail', kwargs={'pk': comment.post})
 
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
