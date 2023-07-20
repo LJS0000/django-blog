@@ -15,8 +15,9 @@
       placeholder='태그를 입력하세요. 띄어쓰기로 구분하며, 특수문자는 사용할 수 없습니다.'
     >
     <div class='write-tags'>
-      {% for tag in post.tags %}
-
+      {% for tag in post.tags.all %}
+        <p>{{tag.content}}</p>
+        <button>X</button>
       {% endfor %}
     </div>
     <div class='write-btns'>

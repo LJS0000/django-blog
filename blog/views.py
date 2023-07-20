@@ -6,6 +6,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 from .models import Post, Comment, Tag, PostTag
 
 
@@ -38,8 +39,67 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'blog/post_edit.html'
     fields = ['title', 'content']
 
+    def get_initial(self):
+        initial = super().get_initial()
+        post = self.get_object()
+        initial['title'] = post.title
+        initial['content'] = post.content
+        return initial
+
+    def get_success_url(self):
+        post = self.get_object()
+        return reverse('blog:detail', kwargs={'pk': post.pk})
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'blog/post_detail.html'
     success_url = '/'
+
+
+### Comment
+class CommentWriteView(LoginRequiredMixin, CreateView):
+    model = Comment
+    template_name = 'blog/post_list.html'
+    fields = ['content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comment
+    template_name = 'blog/post_list.html'
+    fields = ['content']
+
+    def get_initial(self):
+        initial = super().get_initial()
+        comment = self.get_object()
+        initial['content'] = comment.content
+        return initial
+
+    def get_success_url(self):
+        comment = self.get_object()
+        return reverse('blog:detail', kwargs={'pk': comment.post})
+
+
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+    template_name = 'blog/post_detail.html'
+
+
+### Tag
+class TagWriteView(LoginRequiredMixin, CreateView):
+    model = Tag
+    template_name = 'blog/post_write.html'
+    fields = ['content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class TagDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+    template_name = 'blog/post_edit.html'
