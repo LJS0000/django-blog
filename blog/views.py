@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Q
 from django.views.generic import (
     ListView,
     CreateView,
@@ -29,6 +29,20 @@ class IndexView(ListView):
         context['mytags'] = mytags
         context['tags'] = tags
         return context
+
+
+# 검색어에 해당하는 리스트 조회
+class SearchPostListView(ListView):
+    model = Post
+    template_name = 'blog/search_post_list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')  # 'q'는 검색어
+        object_list = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )
+        return object_list
 
 
 # 태그에 해당하는 리스트 조회

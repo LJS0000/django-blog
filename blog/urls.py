@@ -51,4 +51,5 @@ urlpatterns = [
         name='tag-lists',
     ),
     # 일반 검색
+    path('search/', views.SearchPostListView.as_view(), name='serch-lists'),
 ]
