@@ -13,5 +13,5 @@ urlpatterns = [
     # 프로필 조회
     path('profile/', views.UserDetailView.as_view(), name='profile'),
     # 프로필 수정
-    path('profile/edit/', views.UserLogoutView.as_view(), name='pf-edit'),
+    path('profile/edit/', views.UserUpdateView.as_view(), name='pf-edit'),
 ]

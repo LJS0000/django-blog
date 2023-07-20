@@ -3,5 +3,9 @@
 {% load static %}
 
 {% block content %}
-    <div>프로필 수정</div>
+    <form action="{% url 'user:pf-edit' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">저장하기</button>
+    </form>
 {% endblock %}

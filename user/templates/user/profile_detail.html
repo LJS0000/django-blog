@@ -3,5 +3,12 @@
 {% load static %}
 
 {% block content %}
-    <div>프로필</div>
+<div class='profile-container'>
+    <img src="{% static 'images/' %}{{ user.profile_img }}">
+    이메일: {{user.email}}
+    닉네임: {{user.username}}
+    <a href='{% url "user:pf-edit" %}'> 내 정보 수정 </a>
+</div>
+
 {% endblock %}
+
