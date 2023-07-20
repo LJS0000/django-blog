@@ -129,6 +129,9 @@ STATIC_ROOT 경로는 STATICFILES_DIRS 등록된 경로와 같은 경로가 있�
 """
 # STATIC_ROOT -> 프로젝트 완성 후 작업
 
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 
