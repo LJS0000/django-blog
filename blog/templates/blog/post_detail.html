@@ -8,7 +8,7 @@
     <h2 class='post-title'>{{ post.title }}</h2>
     <div class='post-info'> 
       <div>
-        <p class='writer'>{{ post.writer.username }}</p>
+        <p class='writer'>작성자: {{ post.writer.username }}</p>
         {% if post.writer == user %}
         <div class='btn-container'>
             <a href='{% url "blog:edit" pk=post.id %}' class='edit btn'>수정</a>
@@ -28,15 +28,19 @@
       <div class='content'>{{ post.content }}</div>
     </div>
     {# 게시글 Tag #}
-    <div class='tags'>
-      {% for mytag in mytags %}
-        <div class='tag-wrapper'>
-          <a>{{ mytag.name }}</a>
-          {% if mytag.writer == user %}
-            <a href='{% url "blog:tag-delete" pk=mytag.pk %}'>X</a>
-          {% endif %}
-        </div>
-      {% endfor %}
+    <div class='post-tags'>
+      {% if mytags %}
+        {% for mytag in mytags %}
+          <div class='post-tag-wrapper'>
+            <a># {{ mytag.name }}</a>
+            {% if mytag.writer == user %}
+              <a href='{% url "blog:tag-delete" pk=mytag.pk %}'>X</a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+          <p>게시글의 태그가 없습니다.</p>
+      {% endif %}
     </div>
     </section>
     {# 댓글 #}
