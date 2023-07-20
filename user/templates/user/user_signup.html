@@ -3,13 +3,26 @@
 {% load static %}
 
 {% block content %}
-<h2>회원가입</h2>
-<form action='{% url "user:signup" %}' method='post' class='signup-form'>
-    {% csrf_token %}
-    <div class='signin-inputs'>
-        {{form}}
-    </div>
-    <button type='submit'>가입하기</button>
-</form>
+<section class='user-roll'>
+  <h2 class='signin-title'>회원가입</h2>
+  <form action='{% url "user:signup" %}' method='post' class='signin-form'>
+      {% csrf_token %}
+      <p>이메일 {{form.email}}</p>
+      <p>비밀번호 {{form.password1}}</p>
+      <p>비밀번호 확인 {{form.password2}}</p>
+      <div class='pf-edit-btns'>
+        <a href='{% url "user:signin" %}'>취소</a>
+        <button type='submit'>가입하기</button>
+      </div>
+  </form>
+</section>
   
+{% endblock %}
+
+
+{# hide_aside 변수를 True로 전달합니다 #}
+{% block aside %}
+  {% with hide_aside=True %}
+    {{ block.super }}
+  {% endwith %}
 {% endblock %}
