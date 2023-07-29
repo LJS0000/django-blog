@@ -130,3 +130,9 @@ STATICFILES_DIRS = [
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
